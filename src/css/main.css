@@ -1,0 +1,320 @@
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(../lato.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(../lato2.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+body {
+  height: 100%;
+  font-family: lato;
+  color: #eee; 
+}
+body.tos-show {
+  overflow:hidden;
+}
+
+.tos-container { display:none; position: fixed; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0,0,0,0.8); z-index: 10; } 
+  .tos-container h4 { margin-bottom: 0; text-align: center; }
+  .tos-container h6 { margin-top: 0; font-size: 12px; text-align: center; } 
+  .tos-container .tos { width: 50%; height: 80%; margin: 5% auto 0; padding: 20px; padding-right:30px; background: #ffffff; color: #000000; border-radius:2px; } 
+    .tos-container .tos ol { width: 100%; height: 90%; padding-left: 9px; text-align: justify; overflow: auto; }
+        .tos-container .tos li { margin-left: 5px; margin-right: 5px; } 
+    .tos-container .tos-footer { width: 90%; margin-bottom: 15px; font-weight: bold; text-align: right; font-size: 15px; }
+      .tos-container .tos-footer strong { cursor: pointer; }
+
+#paperwallet-details { width: 100%; max-width: 700px; margin: 9px auto; background: rgba(255,255,255,.2); padding: 15px; box-sizing: border-box; }
+
+.paper-wallet {
+  position: relative;
+  width: 550px;
+  margin: auto;
+  padding: 9px;
+}
+
+#login-box {
+  text-align: center;
+}
+
+#login-box > h1 {
+  margin-bottom: 0;
+}
+
+ #login-box > p {
+   margin-top: 0;
+   font-size:13px;
+ }
+
+#login-box fieldset {
+  width: 50%;
+  margin: 5px auto;
+  border: 1px solid #000;
+  background: rgba(255,255,255,.7);
+  border-radius: 5px;
+}
+
+#login-box fieldset input {
+  width: 100%;
+  text-align: center;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+#login-box #progress {
+  width: 50%;
+  margin: auto;
+}
+
+#lvl-wrap { margin: 15px 0; font-size: 10px; text-align: right; }
+  #expert { color: #666; cursor: pointer; display: block }
+  #expert:hover { color: #000 }
+
+#levels { display: none; }
+
+.result-btn {
+  height: 35px;
+  text-align: right;
+}
+
+.result-btn button { 
+  padding: 10px;
+  background-color: #cec19c;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.currency {
+  position: relative;
+  margin: 80px 0;
+  color: #000;
+}
+
+.upload {
+	position: absolute;
+	top: -30px;
+	right:0;
+}
+
+.upload input[type="file"] {
+	color: transparent;
+	width:90px;
+}
+
+.upload label[for="upload-img"] {
+    color: #555;
+}
+
+.wallet-bg {
+  width: 550px;
+  height: 300px;
+  border: 1px solid #000
+}
+
+.identicon {
+  position: absolute;
+  height: 40px;
+  left: 110px;
+  top: 10px;
+  background: #ffffff;
+}
+
+.qr-pub {
+  position: absolute;
+  top: 70px;
+  left: 9px;
+}
+
+.qr-pri {
+  position: absolute;
+  top: 130px;
+  right: 0;
+}
+
+.qr-image {
+  display: inline-block;
+  padding: 5px;
+}
+
+.qr-image img {
+  border: 4px solid #FFF;
+}
+
+.qr-text {
+  position: absolute;
+  width: 100%;
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.pub-text {
+  top: -40px;
+  right: 105px;
+  font-size: 8px;
+}
+
+.pri-text { bottom: 100%; left: 261px; font-size: 10px; width: 274px; word-wrap: break-word; background: #fff; top: 132px; height: 17px; text-align: center; line-height: 8px; }
+
+.date {
+  position: absolute;
+  width: 110px;
+  bottom: 168px;
+  right: 488px;
+  font-size: 10px;
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+/*Shorter than other addresses*/
+#nxtacct {
+  top: -60px;
+}
+
+/*Accountable for unreasonable long text*/
+#nxtpri {
+  word-wrap: break-word;
+  width: 45%;
+  left: 272px;
+  bottom: 160px;
+}
+
+
+/*XMR qr codes*/
+#xmrpub {
+  width: 50%;
+  word-wrap: break-word;
+  left: 28px;
+  top: 140px;
+}
+#xmrpri-spend {word-wrap: break-word; display: block; width: 297px; left: 251px; top: 142px; background: #fff; height: 19px; font-size: 11px; line-height: 9px; text-align: center; z-index: 9 }
+#xmrpri-view  {word-wrap: break-word; left: 271px; background: #fff; width: 297px; display: block; top: 141px; height: 21px; font-size: 11px; line-height: 9px; text-align: center; }
+
+#qr-xmrpri-spend {
+  position: absolute;
+  right: -6px;
+  top: -4px;
+}
+#qr-xmrpri-view {
+  position: absolute;
+  right: -6px;
+  top: 177px;
+}
+
+
+/* Animated stars background */
+.paper-wallet,
+#paperwallet-details {
+    background-color:rgba(33, 33, 33, 0.3);
+    color:#ffffff;
+    display:block;
+    position:relative;
+    z-index:5;
+}
+
+@keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-webkit-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-moz-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-ms-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+
+@keyframes move-clouds-back {
+    from {background-position:0 0;}
+    to {background-position:10000px 0;}
+}
+@-webkit-keyframes move-clouds-back {
+    from {background-position:0 0;}
+    to {background-position:10000px 0;}
+}
+@-moz-keyframes move-clouds-back {
+    from {background-position:0 0;}
+    to {background-position:10000px 0;}
+}
+@-ms-keyframes move-clouds-back {
+    from {background-position: 0;}
+    to {background-position:10000px 0;}
+}
+
+.stars, .twinkling, .clouds {
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+.stars {
+  background:#000 url(../img/stars.webp) repeat top center;
+  z-index:0;
+  position: fixed;
+}
+
+.twinkling{
+  background:transparent url(../img/twinkling.webp) repeat top center;
+  z-index:1;
+  position: fixed;
+
+  -moz-animation:move-twink-back 200s linear infinite;
+  -ms-animation:move-twink-back 200s linear infinite;
+  -o-animation:move-twink-back 200s linear infinite;
+  -webkit-animation:move-twink-back 200s linear infinite;
+  animation:move-twink-back 200s linear infinite;
+}
+
+.clouds{
+    background:transparent url(../img/clouds3.webp) repeat top center;
+    z-index:3;
+    position: fixed;
+
+  -moz-animation:move-clouds-back 200s linear infinite;
+  -ms-animation:move-clouds-back 200s linear infinite;
+  -o-animation:move-clouds-back 200s linear infinite;
+  -webkit-animation:move-clouds-back 200s linear infinite;
+  animation:move-clouds-back 200s linear infinite;
+}
+
+/* END -- Animated stars background */
+
+
+
+
+
+
+
+@media print {
+  #paperwallet-details,
+  .result-btn,
+  .upload,
+  .bg-bubbles {
+    display: none;
+  }
+  .currency { 
+    margin: 9px 0; 
+  }
+}

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+   <meta name="viewport" content="width=device-width,initial-scale=1">
+   <title>Paper Wallet</title>
+   <meta name="author" content="name">
+   <meta name="description" content="description here">
+   <meta name="keywords" content="keywords,here">
+   <!-- <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon"> -->
+   <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
+   <link rel="stylesheet" href="src/css/main.css" type="text/css">
+ </head>
+<body>
+<div class="stars"></div>
+<div class="twinkling"></div>
+<div class="clouds"></div>
+<div class="tos-container">
+    <div class="tos">
+      <h4>Terms of Service</h4>
+      <h6>LEGAL DISCLAIMER</h6>
+        <ol>
+          <li>Risks related to the user of this Wallet Generator
+             <p>This Wallet Generator will not be responsible for any losses, damages or claims arising from events falling within the scope of the following five categories:</p> 
+             <p>(1) Mistakes made by the user of any cryptocurrency-related software or service, e.g., forgotten passwords, payments, sent to wrong coin addresses, and accidental deletion of accounts.</p> 
+             <p>(2) Software problems with the app and/or any cryptocurrency-related software or services, e.g., corrupted wallet files, incorrectly constructed transactions, unsafe cryptographic libraries, cryptocurrency-related software or service.</p> 
+             <p>(3) Technical failures in the hardware of the user of any cryptocurrency-related software or service, e.g., data loss due to a faulty or damaged storage device.</p> 
+             <p>(4) Security problems experienced by the user of any cryptocurrency-related software or service, e.g., unauthorized access to users' accounts.</p> 
+             <p>(5) Actions or inactions of third parties and/or events experienced by third parties, e.g., the bankruptcy of service providers, information security attacks on service providers, and fraud conducted by third parties.  </p>
+          </li>
+          <li>No warranties
+            <p>The app is provided on an "as is" basis without any warranties of any kind regarding the app and/or any content, data, materials and/or services provided on the app.</p>
+          </li>
+          <li>Limitation of liability 
+            <p>Unless otherwise required by law, in no event shall the owners of, or contributors to, the app be liable for any damages of any kind, including, but not limited to, loss of use, loss of profits, or loss of data arising out of or in any way connected with the use of the app. In no way are the owners of, or contributors to, the app responsible for the actions, decisions, or other behavior taken or not taken by you in reliance upon the app.</p>
+          </li>
+          <li>Arbitration
+            <p>The user of the app agrees to arbitrate any dispute arising from or in connection with the app or this disclaimer, except for disputes related to copyrights, logos, trademarks, trade names, trade secrets or patents.</p>
+          </li>
+          <li>Last amendment
+            <p>This disclaimer was amended for the last time on April 10th, 2018.<p>
+          </li> 
+          <div class="tos-footer"><strong>YES I ACCEPT THESE TERMS</strong></div>
+        </ol>            
+    </div><!-- tos -->
+</div><!-- tos-container -->
+	
+<div class="paper-wallet">
+    <div id="login-box">
+      <h1>Memory Paper Wallet</h1>
+      <p>A Cryptocurrency Brain + Paper Wallet Generator<br/> Bitcoin Segwit, Litecoin, Ethereum, Monero, and Ardor/Ignis</p>
+      <form class="x-login">
+        <fieldset  class="x-email">
+            <input id="xprime" class="form-control" placeholder="Email or Username" autocomplete="off" oninput="updateButton()">
+        </fieldset>
+         <fieldset class="x-salt">
+            <input id="salt" class="form-control" placeholder="Passphrase" autocomplete="off">
+        </fieldset>
+
+       <div id="progress" style="display:none">
+         <center>Running scrypt...</center>
+         <div class="progress">
+           <div id="progress-bar" class="progress-bar" style="background: green; width: 50%"> </div>
+         </div>
+       </div>
+      <button id="btn" class="btn" disabled="">Generate</button>
+        <div id="lvl-wrap">      
+            <strong id="expert">Expert Options - Encryption </strong>
+            <span id="levels">
+              <input type="radio" class="power-level" name="power-level" value="1"> None / 
+              <input type="radio" class="power-level" name="power-level" value="16"> Short / 
+              <input type="radio" class="power-level" name="power-level" value="18"> Warp /
+              <input type="radio" class="power-level" name="power-level" value="default" checked> Default
+              <br>
+              <input type="radio" class="power-level" name="power-level" value="Offline Hardened"> Offline Hardened (2+ minutes load time)
+              <h5 id="lvl-status"><div id="lvl-scrypt"></div><div id="lvl-pbkdf2"></div></h5>
+            </span>
+        </div><!-- #lvl-wrap -->
+      </form>
+      <p>Made with &hearts; in NYC by <a href="https://xcubicle.com" style="color:red">xCubicle Blockchain Labs</a></p>
+    </div><!-- #login-box -->
+
+  <div class="result-btn" style="display:none;">
+     <button class="rerun-btn">Generate Another Wallet</button>
+     <button class="print">Print</button>
+  </div>
+
+  <div id="result" style="display:none;">
+     <div class="currency seg">
+        <div class="upload">
+           <label for="upload-img">Upload Background Image<sup>550x300</sup> (SegWit)</label>
+           <input type="file" id="upload-img" name="upload-img" accept=".jpg, .jpeg, .png .webp">
+           <button>Remove from Printing</button>
+        </div>
+
+        <img class="wallet-bg" src="src/img/bgpaper_btcsegwit.webp" alt="Segwit Wallet">
+        <span class="identicon i-seg"></span>
+
+        <span id="qr-segpub" class="qr-image qr-pub"></span>
+        <span id="segpub" class="altcoins qr-text pub-text"></span>
+        
+        <span class="date"></span>
+
+        <span id="qr-segpri" class="qr-image qr-pri"></span>
+        <span id="segpri" class="altcoins qr-text pri-text"></span>
+     </div>
+     <div class="currency xmr">
+        <div class="upload">
+            <label for="upload-img">Upload Background Image<sup>550x300</sup> (XMR)</label>
+            <input type="file" id="upload-img" name="upload-img" accept=".jpg, .jpeg, .png .webp">
+            <button>Remove from Printing</button>
+        </div>
+
+        <img class="wallet-bg" src="src/img/bgpaper_xmr.webp" alt="Monero Wallet">
+        <span class="identicon i-xmr"></span>
+
+        <span id="qr-xmrpub" class="qr-image qr-pub"></span>
+        <span id="xmrpub" class="altcoins qr-text pub-text"></span>
+        
+        <span class="date"></span>
+
+        <span id="qr-xmrpri-spend" class="qr-image"></span>
+        <span id="xmrpri-spend" class="altcoins qr-text pri-text"></span>
+
+        <span id="qr-xmrpri-view" class="qr-image"></span>
+        <span id="xmrpri-view" class="altcoins qr-text pri-text"></span>
+     </div>
+     <div class="currency ltc">
+        <div class="upload">
+            <label for="upload-img">Upload Background Image<sup>550x300</sup> (LTC)</label>
+            <input type="file" id="upload-img" name="upload-img" accept=".jpg, .jpeg, .png .webp">
+            <button>Remove from Printing</button>
+        </div>
+
+        <img class="wallet-bg" src="src/img/bgpaper_ltc.webp" alt="LTC Wallet">
+        <span class="identicon i-ltc"></span>
+
+        <span id="qr-ltcpub" class="qr-image qr-pub"></span>
+        <span id="ltcpub" class="altcoins qr-text pub-text"></span>
+        
+        <span class="date"></span>
+
+        <span id="qr-ltcpri" class="qr-image qr-pri"></span>
+        <span id="ltcpri" class="altcoins qr-text pri-text"></span>
+     </div>
+     <div class="currency eth">
+        <div class="upload">
+            <label for="upload-img">Upload Background Image<sup>550x300</sup> (ETH)</label>
+            <input type="file" id="upload-img" name="upload-img" accept=".jpg, .jpeg, .png .webp">
+            <button>Remove from Printing</button>
+        </div>
+
+        <img class="wallet-bg" src="src/img/bgpaper_eth.webp" alt="Ethereum Wallet">
+        <span class="identicon i-eth"></span>
+
+        <span id="qr-ethpub" class="qr-image qr-pub"></span>
+        <span id="ethpub" class="altcoins qr-text pub-text"></span>
+        
+        <span class="date"></span>
+
+        <span id="qr-ethpri" class="qr-image qr-pri"></span>
+        <span id="ethpri" class="altcoins qr-text pri-text"></span>
+     </div>
+     <div class="currency nxt">
+        <div class="upload">
+            <label for="upload-img">Upload Background Image<sup>550x300</sup> (ARDR)</label>
+            <input type="file" id="upload-img" name="upload-img" accept=".jpg, .jpeg, .png .webp">
+            <button>Remove from Printing</button>
+        </div>
+
+        <img class="wallet-bg" src="src/img/bgpaper_ardor.webp" alt="Ardor Wallet">
+        <span class="identicon i-nxt"></span>
+
+        <span id="qr-nxtacct" class="qr-image qr-pub"></span>
+        <span id="nxtacct" class="qr-text pub-text"></span>
+        
+        <span class="date"></span>
+
+        <span id="qr-nxtpri" class="qr-image qr-pri"></span>
+        <span id="nxtpri" class="qr-text pri-text"></span>
+     </div>
+     <div class="currency btc">
+        <div class="upload">
+            <label for="upload-img">Upload Background Image<sup>550x300</sup> (BTC)</label>
+            <input type="file" id="upload-img" name="upload-img" accept=".jpg, .jpeg, .png .webp">
+            <button>Remove from Printing</button>
+        </div>
+
+        <img class="wallet-bg" src="src/img/wallet-template.webp" alt="Bitcoin Wallet">
+        <span class="identicon i-btc"></span>
+
+        <span id="qr-btcpub" class="qr-image qr-pub"></span>
+        <span id="btcpub" class="qr-text pub-text"></span>
+        
+        <span class="date"></span>
+
+        <span id="qr-btcpri" class="qr-image qr-pri"></span>
+        <span id="btcpri" class="qr-text pri-text"></span>
+     </div>
+  </div><!-- qr-images -->
+</div><!-- paper-wallet -->
+
+  <div id="paperwallet-details">
+    <h4>Instructions</h4>
+    <ol>
+      <li><em>Optional:</em> <a href="paperwallet-v1.0-sha256-9910fe7d1064f0a4e5fbf8ab0c3ef3f109dec4bb8b3e992ed7efca14a56fab93.min.html" download>Download Memory Paper Wallet</a>  and run locally.</li>
+      <li><em>Optional:</em> Disconnect from the Internet</li>
+      <li><em>Optional:</em> Set "Expert Options" encryption mode to "Offline Hardened"</li>
+      <li>Enter any username and passphrase and generate</li>
+      <li>Print or take a screenshot</li>
+    </ol>
+
+    <h4>What is an Memory Paper Wallet?</h4>
+    Memory Paper Wallet is a customizable printable paper wallet generator using a brain wallet passphrase hardened with scrypt to make address generation both memory and time-intensive.
+    
+    <h4>Main Features</h4>
+    <ul>
+      <li>Bitcoin segwit bech32 paper wallets</li>
+      <li>Monero, Ethereum, Litecoin, and Ardor/Ignis paper wallet and graphics</li>
+      <li>User changable background for easy customization. (Gifts, Birthdays, Weddings, Promotions, etc.)</li>
+      <li>Generates unique multiple crypto currencies with a username passphrase combination</li>
+      <li>Identicon integration for visual representation of your address.</li>
+      <li>Scrypt hardened to make brute force guessing almost impossible. Address generation is both memory and time-intensive.</li>
+      <li>Multi-Key paper wallets using Shamir Secret Sharing Scheme. (WIP).</li>
+    </ul>
+
+    <h4>Whats the story behind this?</h4>
+    We created this to introduce Bitcoin to clients, friends, and family in the form or printable wallets. There wasn't any customizable paper wallet generator, which is why we created this one. 
+
+    <h4>Warnings and Considerderations</h4>
+    <ul>
+      <li>PLEASE, DO NOT PUT YOUR LIFE SAVINGS ON THESE ADDRESSES. Get a hardware wallet for that.</li>
+      <li>Test wallets by sending a little first, then send it back out to verify its working!</li>
+      <li>Each "set" of generated addresses should not be shared with other people.</li>
+    </ul>
+
+    <h4>Project Inspired by</h4>
+    Warp Wallet Generator by maxtaco - https://github.com/keybase/warpwallet<br/>
+    Memwallet by David Bengoa - https://github.com/dvdbng/memwallet<br/>
+
+    <h4>Can this be customized further?</h4>
+    Yes, find us on google, xCubicle.
+
+    <h4>Source Code</h4>
+    https://github.com/xcubicle/memorypaperwallet
+
+    <h4>MIT License</h4>
+    <pre>
+    Copyright (c) 2018 XCUBICLE 
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this 
+    software and associated documentation files (the "Software"), to deal in the 
+    Software without restriction, including without limitation the rights to use, copy, 
+    modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
+    and to permit persons to whom the Software is furnished to do so, subject to the 
+    following conditions:
+
+    The above copyright notice and this permission notice shall be included in all 
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
+    PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+    HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+    CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
+    OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+    </pre>
+  </div>
+
+<script src="src/js/lib/jquery.min.js"></script>
+	<script src="src/js/lib/qr.js"></script>
+<script src="src/js/lib/jdenticon.js"></script>
+	<script src="src/js/lib/memWallet.js"></script>
+	<script src="src/js/lib/nxtjs.js"></script>
+	<script src="src/js/main.js"></script>
+</body>
+</html>
