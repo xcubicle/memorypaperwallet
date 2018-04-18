@@ -10,6 +10,7 @@ This was the motivation to create a paper wallet generator to solve this problem
  
 Basing our work on Warp Wallet and Memwallet. We managed to retro fit these brain wallet generators with new enhancements for everyday use. Keep in mind these paper wallets are meant to store small insignificant amount of coins which are meant to be given away as gifts or for short term storage. Even with a simple 8 character passphrase, the scrypt address generation is meant to be memory and time-intensive so others can't easily guess your secret. This is why paper wallets should only be meant to store insignificant amounts to be used as gifts. 
  
+This app is a single-page application (SPA) that runs completely client-side. It will have no backend API to talk to. In this sense, it will be a completely decentralized, server-less application.
 
 ### Main Features: ###
 - Custom printable artwork.
