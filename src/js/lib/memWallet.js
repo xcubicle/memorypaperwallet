@@ -42,7 +42,7 @@ function encryptStrengh(power, altCoin) {
   if ((urlhash != null) && (altCoin == false)) {
     var lvl = decodeURI(urlhash[1]) || 0;
     var spow = Math.pow(2, lvl.substring(0,2));
-    var spow2 = parseInt(lvl.substring(2,9));
+    var spow2 = parseInt(lvl.substring(2,9)) || 65536;
   }
   
   encryption = { 

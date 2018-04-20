@@ -157,7 +157,7 @@
       sText = pText = 'custom';
       sPower = lvl.substring(0, 2);
       spow = Math.pow(2, sPower);
-      spow2 = parseInt(lvl.substring(2, 9));
+      spow2 = parseInt(lvl.substring(2, 9)) || 65536;
     }
 
     $('#lvl-scrypt').text(`scrypt: ${sText} =  ${spow}`);
