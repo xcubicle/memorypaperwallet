@@ -29,7 +29,7 @@
     $('body').addClass('tos-show');
   });
 
-  $('.tos-footer strong').click(function(event) { 
+  $('.tos-footer button').click(function(event) { 
     event.stopPropagation();
     $('.tos-container').hide();
     $('body').removeClass('tos-show');

@@ -30,7 +30,7 @@ body.tos-show {
   .tos-container .tos { width: 50%; height: 80%; margin: 5% auto 0; padding: 20px; padding-right:30px; background: #ffffff; color: #000000; border-radius:2px; } 
     .tos-container .tos ol { width: 100%; height: 90%; padding-left: 9px; text-align: justify; overflow: auto; }
         .tos-container .tos li { margin-left: 5px; margin-right: 5px; } 
-    .tos-container .tos-footer { width: 90%; margin-bottom: 15px; font-weight: bold; text-align: right; font-size: 15px; }
+    .tos-container .tos-footer { width: 90%; margin-bottom: 15px; padding-bottom: 10px; font-weight: bold; text-align: right; font-size: 15px; }
       .tos-container .tos-footer strong { cursor: pointer; }
 
 #paperwallet-details { width: 100%; max-width: 700px; margin: 9px auto; background: rgba(255,255,255,.2); padding: 15px; box-sizing: border-box; }
@@ -176,6 +176,15 @@ body.tos-show {
   -webkit-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
+}
+
+.logo-img {
+    position: absolute;
+    height: 14px;
+    transform: rotate(90deg);
+    left: 35px;
+    top: 144px;
+    width: 300px;
 }
 
 /*Shorter than other addresses*/
