@@ -1,5 +1,13 @@
 (function(global) {
   "use strict";
+    const chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+    if (!chrome) {
+        $('#login-box input').each(function() {
+          $(this).attr('disabled','disabled');  
+        });
+        $('#result').remove();
+        alert('This wallet ONLY works on chrome');
+    }
 
   const ELEMENT_VARS = {
     runWrapper: '.x-login',
