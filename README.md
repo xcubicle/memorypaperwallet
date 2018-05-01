@@ -21,4 +21,6 @@ This app is a single-page application (SPA) that runs completely client-side. It
  
 
 Site:  https://xcubicle.github.io/memorypaperwallet/
+
+
 Source: https://github.com/xcubicle/memorypaperwallet
