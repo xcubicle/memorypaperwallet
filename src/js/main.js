@@ -1,13 +1,14 @@
 (function(global) {
   "use strict";
-    const chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
-    if (!chrome) {
-        $('#login-box input').each(function() {
-          $(this).attr('disabled','disabled');  
-        });
-        $('#result').remove();
-        alert('This wallet ONLY works on chrome');
-    }
+  let GLOBAL_SHARE_COUNTER = 0;
+  const chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+  if (!chrome) {
+      $('#login-box input').each(function() {
+        $(this).attr('disabled','disabled');  
+      });
+      $('#result').remove();
+      alert('This wallet ONLY works on chrome');
+  }
 
   const ELEMENT_VARS = {
     runWrapper: '.x-login',
@@ -18,10 +19,67 @@
     nxtPub: '#nxtacct',
     nxtPri: '#nxtpri'
   };
+
   const createdDate = new Date().toJSON().slice(0,10);
 
   showEncryption('default');
   uploadImage();
+
+  secretJS();
+
+  function secretJS() {
+    $('.secret-share-btn').on('click',function(event) {
+      event.preventDefault();
+      $(this).next().toggle();
+    });
+
+    $('.secret-share-form .split').on('click', function(event) {
+      event.preventDefault();
+      $('#threshold-error').remove();
+      const _this = $(this),
+            _form = _this.parent(),
+            _wallet = _this.parent().parent(),
+            _enableShareBtn = _this.parent().parent().find('.secret-share-btn'),
+            privateKey = _wallet.find('.pri-text').text(),
+            shareValue = _form.find('.shares').val() * 1,
+            thresholdValue = _form.find('.threshold').val() * 1;
+
+      // Doesn't make sense to have threshold > shares
+      if(thresholdValue > shareValue) return _this.after('<div id="threshold-error" style="color: red;">Threshold can\'t be bigger than shares.</div>');
+
+      if(privateKey && shareValue && thresholdValue) {
+        if(!secrets && typeof secrets != 'object') return; //Make sure secret library is included
+        const shares = secrets.share(secrets.str2hex(privateKey),shareValue,thresholdValue);
+        for(let i = 0; i < shareValue; i++) {
+          let label = i + 1,
+              clonedWallet = _wallet.clone().addClass(`cloned`);
+
+          cloneWallet(_wallet, clonedWallet, label, shareValue, shares[i]);
+        }
+        //remove the form, we don't want users to make multiple splits on one coin.
+        _form.remove(); 
+        _enableShareBtn.remove();
+      }
+    });
+  }//func secretJS
+
+  function cloneWallet(originalWallet, clonedWallet, label, maxShare, share) {
+    const wallet = clonedWallet,
+          priKeySelector = $('.pri-text', wallet).attr('id'),
+          qrSelector = $('.qr-image.qr-pri', wallet).attr('id'),
+          newPriKeySelector = `${priKeySelector}-shares-${label}`,
+          newqrSelector = `${qrSelector}-shares-${label}`;
+          
+    $('.secret-share-form, .secret-share-btn', wallet).remove();
+    $(`#${qrSelector}`, wallet).html('');
+    $(`#${priKeySelector}`, wallet).attr('id', newPriKeySelector);
+    $(`#${qrSelector}`, wallet).attr('id', newqrSelector);
+    $('.upload', wallet).after(`<span class="share-counter">${label}/${maxShare}</span>`);
+    originalWallet.after(wallet);
+    
+    $(`#${newPriKeySelector}`).text(share);
+    makeQRImage(newqrSelector, share);
+  }
 
   $('#btn').click(function(event) {
     event.preventDefault();
@@ -121,6 +179,7 @@
         $('#btn').show();
         $('.qr-image').html('');
         $('.identicon').html('');
+        $('.cloned').remove();
       }
     });
   })();
@@ -211,7 +270,7 @@
   }
 
   function uploadImage() {
-    $(".upload").click(function () {
+    $(document).on('click','.upload',function () {
       const $bgImage = $(this).parent().find('.wallet-bg');
       const $uploadInput = $(this).find('input[type="file"]');
       $uploadInput.change(function(e) {

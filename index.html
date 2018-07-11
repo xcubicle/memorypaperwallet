@@ -104,6 +104,19 @@
         <img class="logo-img" src="src/img/logo_xcubicle_mitx.png" alt="Xcubicle Logo">
         <span id="qr-segpri" class="qr-image qr-pri"></span>
         <span id="segpri" class="altcoins qr-text pri-text"></span>
+
+        <button class="secret-share-btn">Enable Secret Sharing</button>
+        <div class="secret-share-form">          
+          <div class="secret-config secret-shares">
+            <label for="shares">Number of shares</label>
+            <input type="number" value="2" min="2" max="9" class="shares">
+          </div>
+          <div class="secret-config secret-threshold">
+            <label for="threshold">Threshold</label>
+            <input type="number" value="2" min="2" max="9" class="threshold">
+          </div>
+          <button class="split">Split</button>
+        </div>
      </div>
      <div class="currency xmr">
         <div class="upload">
@@ -122,11 +135,24 @@
         
         <img class="logo-img" src="src/img/logo_xcubicle_mitx.png" alt="Xcubicle Logo">
 
-        <span id="qr-xmrpri-spend" class="qr-image"></span>
+        <span id="qr-xmrpri-spend" class="qr-image qr-pri"></span>
         <span id="xmrpri-spend" class="altcoins qr-text pri-text"></span>
 
-        <span id="qr-xmrpri-view" class="qr-image"></span>
+        <span id="qr-xmrpri-view" class="qr-image qr-pri"></span>
         <span id="xmrpri-view" class="altcoins qr-text pri-text"></span>
+
+        <button class="secret-share-btn">Enable Secret Sharing</button>
+        <div class="secret-share-form">          
+          <div class="secret-config secret-shares">
+            <label for="shares">Number of shares</label>
+            <input type="number" value="2" min="2" max="9" class="shares">
+          </div>
+          <div class="secret-config secret-threshold">
+            <label for="threshold">Threshold</label>
+            <input type="number" value="2" min="2" max="9" class="threshold">
+          </div>
+          <button class="split">Split</button>
+        </div>
      </div>
      <div class="currency ltc">
         <div class="upload">
@@ -147,6 +173,19 @@
 
         <span id="qr-ltcpri" class="qr-image qr-pri"></span>
         <span id="ltcpri" class="altcoins qr-text pri-text"></span>
+
+        <button class="secret-share-btn">Enable Secret Sharing</button>
+        <div class="secret-share-form">          
+          <div class="secret-config secret-shares">
+            <label for="shares">Number of shares</label>
+            <input type="number" value="2" min="2" max="9" class="shares">
+          </div>
+          <div class="secret-config secret-threshold">
+            <label for="threshold">Threshold</label>
+            <input type="number" value="2" min="2" max="9" class="threshold">
+          </div>
+          <button class="split">Split</button>
+        </div>
      </div>
      <div class="currency eth">
         <div class="upload">
@@ -167,6 +206,19 @@
 
         <span id="qr-ethpri" class="qr-image qr-pri"></span>
         <span id="ethpri" class="altcoins qr-text pri-text"></span>
+
+        <button class="secret-share-btn">Enable Secret Sharing</button>
+        <div class="secret-share-form">          
+          <div class="secret-config secret-shares">
+            <label for="shares">Number of shares</label>
+            <input type="number" value="2" min="2" max="9" class="shares">
+          </div>
+          <div class="secret-config secret-threshold">
+            <label for="threshold">Threshold</label>
+            <input type="number" value="2" min="2" max="9" class="threshold">
+          </div>
+          <button class="split">Split</button>
+        </div>
      </div>
      <div class="currency nxt">
         <div class="upload">
@@ -187,6 +239,19 @@
 
         <span id="qr-nxtpri" class="qr-image qr-pri"></span>
         <span id="nxtpri" class="qr-text pri-text"></span>
+
+        <button class="secret-share-btn">Enable Secret Sharing</button>
+        <div class="secret-share-form">          
+          <div class="secret-config secret-shares">
+            <label for="shares">Number of shares</label>
+            <input type="number" value="2" min="2" max="9" class="shares">
+          </div>
+          <div class="secret-config secret-threshold">
+            <label for="threshold">Threshold</label>
+            <input type="number" value="2" min="2" max="9" class="threshold">
+          </div>
+          <button class="split">Split</button>
+        </div>
      </div>
      <div class="currency btc">
         <div class="upload">
@@ -207,6 +272,19 @@
 
         <span id="qr-btcpri" class="qr-image qr-pri"></span>
         <span id="btcpri" class="qr-text pri-text"></span>
+
+        <button class="secret-share-btn">Enable Secret Sharing</button>
+        <div class="secret-share-form">          
+          <div class="secret-config secret-shares">
+            <label for="shares">Number of shares</label>
+            <input type="number" value="2" min="2" max="9" class="shares">
+          </div>
+          <div class="secret-config secret-threshold">
+            <label for="threshold">Threshold</label>
+            <input type="number" value="2" min="2" max="9" class="threshold">
+          </div>
+          <button class="split">Split</button>
+        </div>
      </div>
   </div><!-- qr-images -->
 </div><!-- paper-wallet -->
@@ -278,11 +356,12 @@
     </pre>
   </div>
 
-<script src="src/js/lib/jquery.min.js"></script>
+  <script src="src/js/lib/jquery.min.js"></script>
 	<script src="src/js/lib/qr.js"></script>
-<script src="src/js/lib/jdenticon.js"></script>
+  <script src="src/js/lib/jdenticon.js"></script>
 	<script src="src/js/lib/memWallet.js"></script>
 	<script src="src/js/lib/nxtjs.js"></script>
+	<script src="src/js/lib/secrets.js"></script>
 	<script src="src/js/main.js"></script>
 </body>
 </html>
