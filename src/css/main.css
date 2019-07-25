@@ -151,6 +151,7 @@ a { color: yellow }
 .qr-image {
   display: inline-block;
   padding: 5px;
+  user-select: none;
 }
 
 .qr-image img {
@@ -180,6 +181,7 @@ a { color: yellow }
   top: 21px;
   right: 51px;
   font-size: 10px;
+  user-select: none;
 }
 
 .logo-img {
@@ -323,3 +325,5 @@ a { color: yellow }
     margin: 9px 0; 
   }
 }
+
+.currency.seg { display: none }
