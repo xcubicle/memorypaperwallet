@@ -11173,8 +11173,9 @@ function reduce32(s) {
   return (new BN(s, 'le').mod(new BN('1000000000000000000000000000000014def9dea2f79cd65812631a5cf5d3ed', 16))).toArrayLike(Buffer, 'le', 32);
 }
 
-function b58checkencode(version, buffer) {
+function b58checkencode(version, buffer, toCompress) {
   buffer = Buffer.concat([Buffer.alloc(1, version), buffer])
+  if (toCompress) buffer = Buffer.concat([buffer, Buffer.alloc(1, 01)]);
   var hash = sha256(sha256(buffer));
   buffer = Buffer.concat([buffer, hash.slice(0, 4)]);
   var encoded = bs58.encode(buffer);
@@ -11213,21 +11214,21 @@ function scriptHashCheck(script) {
     buffer[1] === 0x20
 }
 
-function keyToBitcoinish(key, version) {
+function keyToBitcoinish(key, version, toCompress) {
   var pubkey = new Buffer(s256.keyFromPrivate(key).getPublic(false, 'hex'), 'hex');
   return {
-    private: b58checkencode(version + 0x80, key),
-    public: b58checkencode(version, ripemd160(sha256(pubkey))),
+    private: b58checkencode(version + 0x80, key, toCompress),
+    public: b58checkencode(version, ripemd160(sha256(pubkey)), toCompress),
   };
 }
 
 function keyToSegwit(key) {
   var btcScriptHash = 0x05;
-  var pubKey = new Buffer(s256.keyFromPrivate(key).getPublic(false, 'hex'), 'hex');
+  var pubKey = new Buffer(s256.keyFromPrivate(key).getPublic(true, 'hex'), 'hex');
   var scriptHashKey = encode(hash160(pubKey));
   // var address = bech32Encode(scriptHashKey)
   return {
-    private: b58checkencode(0 + 0x80, key),
+    private: b58checkencode(0 + 0x80, key, true),
     public: bech32Encode(scriptHashKey)
   }
 }
