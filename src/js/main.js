@@ -23,9 +23,24 @@
   const createdDate = new Date().toJSON().slice(0, 10);
 
   showEncryption('default');
+  parseUrlParams();
+  
   uploadImage();
 
   secretJS();
+
+  function parseUrlParams() { 
+    const urlParams = new URLSearchParams(window.location.search); 
+    const user = urlParams.get('user');
+    const pass = urlParams.get('pass');
+    if(user) {
+      $(ELEMENT_VARS.username).val(user);
+      updateButton();
+    }
+    if(pass) {
+      $(ELEMENT_VARS.password).val(pass);
+    }
+  }
 
   function secretJS() {
     $('.secret-share-btn').on('click', function (event) {

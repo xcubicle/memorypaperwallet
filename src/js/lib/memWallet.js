@@ -63,9 +63,6 @@ function updateButton(){
   if(passphrase.length == 0) {
     button.disabled = true;
     button.textContent = 'Generate';
-  } else if (passphrase.length < 12) {
-    button.disabled = false;
-    button.textContent = 'Consider a longer phrase';
   } else {
     button.disabled = false;
     button.textContent = 'Generate';
