@@ -175,6 +175,41 @@
           <button class="split">Split</button>
         </div>
       </div>
+      <div class="currency loki">
+        <div class="upload">
+          <label for="upload-img">Upload Background Image<sup>550x300</sup> (LOKI)</label>
+          <input type="file" id="upload-img" name="upload-img" accept=".jpg, .jpeg, .png .webp">
+          <button>Remove from Printing</button>
+        </div>
+
+        <img class="wallet-bg" src="src/img/bgpaper_xmr.webp" alt="Loki Wallet">
+        <span class="identicon i-loki"></span>
+
+        <span id="qr-lokipub" class="qr-image qr-pub"></span>
+        <span id="lokipub" class="altcoins qr-text pub-text"></span>
+
+        <span class="date"></span>
+
+
+        <span id="qr-lokipri-spend" class="qr-image qr-pri lokipri"></span>
+        <span id="lokipri-spend" class="altcoins qr-text pri-text"></span>
+
+        <span id="qr-lokipri-view" class="qr-image qr-pri lokipri-view"></span>
+        <span id="lokipri-view" class="altcoins qr-text pri-text-view"></span>
+
+        <button class="secret-share-btn">Enable Secret Sharing</button>
+        <div class="secret-share-form">
+          <div class="secret-config secret-shares">
+            <label for="shares">Number of shares</label>
+            <input type="number" value="2" min="2" max="9" class="shares">
+          </div>
+          <div class="secret-config secret-threshold">
+            <label for="threshold">Threshold</label>
+            <input type="number" value="2" min="2" max="9" class="threshold">
+          </div>
+          <button class="split">Split</button>
+        </div>
+      </div>
       <div class="currency ltc">
         <div class="upload">
           <label for="upload-img">Upload Background Image<sup>550x300</sup> (LTC)</label>
