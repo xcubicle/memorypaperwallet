@@ -1,6 +1,7 @@
 (function (global) {
   "use strict";
   let GLOBAL_SHARE_COUNTER = 0;
+  const SUPPORTED_ALT_COINS = ['litecoin', 'ethereum', 'segwit', 'loki', 'monero'];
   const chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
   if (!chrome) {
     $('#login-box input').each(function () {
@@ -24,13 +25,13 @@
 
   showEncryption('default');
   parseUrlParams();
-  
+
   uploadImage();
 
   secretJS();
 
-  function parseUrlParams() { 
-    const urlParams = new URLSearchParams(window.location.search); 
+  function parseUrlParams() {
+    const urlParams = new URLSearchParams(window.location.search);
     const user = urlParams.get('user');
     const pass = urlParams.get('pass');
     if(user) {
@@ -149,44 +150,42 @@
   }
 
   function generateAltCoins(privateKey, power) {
-    // total of 4 alt coins
-    const altCoins = ['litecoin', 'ethereum', 'segwit', 'monero'];
     const params = {
       power: power,
       currency: null,
       privateKey: privateKey,
       altCoin: true
     };
-    for (let altcoin of altCoins) {
+    for (let altcoin of SUPPORTED_ALT_COINS) {
       let alt = altCoinCode(altcoin);
       params.currency = altcoin;
       $('#progress center').text('Generating alt coins...');
       generate(params, result => {
         drawIdenticon(`.i-${alt}`, result.public);
 
-        if (alt && alt !== 'xmr') {
+        if (alt == 'loki' || alt == 'xmr') {
+          setResult(`#${alt}pub`, result.public);
+          // setResult(`#xmrpub-spend`, result.public_spend);
+          setResult(`#${alt}pri-spend`, result.private_spend);
+          // setResult(`#xmrpub-view`, result.public_view);
+          setResult(`#${alt}pri-view`, '<strong><sup>VIEW</sup></strong>' + result.private_view);
+
+          makeQRImage(`qr-${alt}pub`, result.public);
+          // makeQRImage(`qr-xmrpub-spend`, result.public_spend);
+          makeQRImage(`qr-${alt}pri-spend`, result.private_spend);
+          // makeQRImage(`qr-xmrpub-view`, result.public_view);
+          makeQRImage(`qr-${alt}pri-view`, result.private_view);
+        } else {
           setResult(`#${alt}pub`, result.public);
           setResult(`#${alt}pri`, result.private);
           makeQRImage(`qr-${alt}pub`, result.public);
           makeQRImage(`qr-${alt}pri`, result.private);
-        } else {
-          setResult(`#xmrpub`, result.public);
-          // setResult(`#xmrpub-spend`, result.public_spend);
-          setResult(`#xmrpri-spend`, result.private_spend);
-          // setResult(`#xmrpub-view`, result.public_view);
-          setResult(`#xmrpri-view`, '<strong><sup>VIEW</sup></strong>' + result.private_view);
-
-          makeQRImage(`qr-xmrpub`, result.public);
-          // makeQRImage(`qr-xmrpub-spend`, result.public_spend);
-          makeQRImage(`qr-xmrpri-spend`, result.private_spend);
-          // makeQRImage(`qr-xmrpub-view`, result.public_view);
-          makeQRImage(`qr-xmrpri-view`, result.private_view);
-          $('#result').toggle();
-          $('#login-box').toggle();
-          $('.result-btn').toggle();
         }
       });
     }
+    $('#result').toggle();
+    $('#login-box').toggle();
+    $('.result-btn').toggle();
   }
 
   function generateEOS(btcpri) {
@@ -265,7 +264,11 @@
   }
 
   function setResult(selector, value) {
-    $(`${selector}`).html(value);
+    try { 
+      $(`${selector}`).html(value);
+    } catch (e) { 
+      console.error(e.message)
+    }
   }
 
   function createNXT(value) {
@@ -285,21 +288,31 @@
         return 'seg';
       case 'monero':
         return 'xmr';
+      case 'loki':
+        return 'loki';
     }
     return '';
   }
 
   function makeQRImage(IDSelector, text, width = 209, height = 209) {
-    new QRCode(IDSelector, {
-      text: text,
-      width: width,
-      height: height
-    });
+    try{
+      new QRCode(IDSelector, {
+        text: text,
+        width: width,
+        height: height
+      });
+    } catch (e) {
+      console.error(e.message);
+    }
   }
 
   function drawIdenticon(selector, value, size = 40) {
-    const svg = jdenticon.toSvg(value, size);
-    $(selector).append(svg);
+    try {
+      const svg = jdenticon.toSvg(value, size);
+      $(selector).append(svg); 
+    } catch (error) { 
+      console.error(e.message)
+    }
   }
 
   function uploadImage() {
