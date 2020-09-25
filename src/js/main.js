@@ -34,12 +34,30 @@
     const urlParams = new URLSearchParams(window.location.search);
     const user = urlParams.get('user');
     const pass = urlParams.get('pass');
+    const displayWallets = urlParams.get('only');
+    const autostart = urlParams.get('autostart');
+
     if(user) {
       $(ELEMENT_VARS.username).val(user);
       updateButton();
     }
+
     if(pass) {
       $(ELEMENT_VARS.password).val(pass);
+    }
+
+    if(displayWallets) { 
+      const wallets = displayWallets.split(',');
+      $('.currency').hide();
+      for(let wallet of wallets) {
+        $(`.currency.${wallet}`).show();
+      }
+    }
+
+    if(user && autostart && autostart == 1) { 
+      setTimeout(() => {
+        $('#btn').click();
+      }, 10);
     }
   }
 
