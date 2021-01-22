@@ -1,6 +1,6 @@
 # Memory Paper Wallet #
 
-## The first user customizable multi-cryptocurrency paper wallet. Supporting: Bitcoin segwit, Litecoin, Ethereum, Monero, EOS and Ardor Ignis. ##
+## The first user customizable multi-cryptocurrency paper wallet. Supporting: Bitcoin segwit, Litecoin, Ethereum, Monero, Oxen, EOS and Ardor Ignis. ##
 
 We've all run into the issue of gifting bitcoin to friends or family at one time or another. A lot of the times, newcomers have a hard time grasping the concept of "digital" money. They think if you can't feel it physically, it isn't "real". Paper wallets are the best way for beginners to get their feet wet into cryptocurrency. Since they can hold it and see it, its a much easier segway into this new concept of "digital money".
  
