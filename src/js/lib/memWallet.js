@@ -17,42 +17,6 @@ function generate(params, callback) {
   }, params.altCoin);
 }
 
-function encryptStrengh(power, altCoin) {  
-  var spow = Math.pow(2, power);
-  var spow2 = Math.pow(2, 16);
-  var encryption = {}
-  //default setting
-  if ($('input[name="power-level"]:checked').val() == 'default') {
-    spow = 262144;
-    spow2 = 65000;
-  } 
-  
-  if ($('input[name="power-level"]:checked').val() == 'Offline Hardened') {
-    spow = 1048576;
-    spow2 = 256000;
-  }
-
-  if(altCoin) { 
-    spow = 2; 
-    spow2 = 2;
-  }
-
-  //Detect custom hash for setting power levels
-  var urlhash = new RegExp('[\?&]lvl=([^&#]*)').exec(window.location.href);
-  if ((urlhash != null) && (altCoin == false)) {
-    var lvl = decodeURI(urlhash[1]) || 0;
-    var spow = Math.pow(2, lvl.substring(0,2));
-    var spow2 = parseInt(lvl.substring(2,9)) || 65536;
-  }
-  
-  encryption = { 
-    scrypt:spow, 
-    pbkdf2:spow2
-  };
-
-  return encryption;
-}
-
 function i(id){
   return document.getElementById(id);
 }
@@ -14898,6 +14862,7 @@ function keyToMonero(seed) {
     address += bs58.encode(address_buf.slice(i*8, i*8+8));
   }
   address += bs58.encode(address_buf.slice(64, 69));
+
   return {
     private_spend: private_spend.toString('hex'),
     private_view: private_view.toString('hex'),
