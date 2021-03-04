@@ -145,6 +145,8 @@
     };
 
     generate(params, result => {
+      validateKeys('btc', result)
+      
       setResult('#btcpub', result.public);
       setResult('#btcpri', result.private);
       drawIdenticon(`.i-btc`, result.public);
@@ -179,6 +181,8 @@
       params.currency = altcoin;
       $('#progress center').text('Generating alt coins...');
       generate(params, result => {
+        validateKeys(alt, result)
+
         drawIdenticon(`.i-${alt}`, result.public);
 
         if (alt == 'loki' || alt == 'xmr') {
@@ -209,6 +213,8 @@
   function generateEOS(btcpri) {
     const privateKey = eosjs_ecc.seedPrivate(btcpri);
     const publicKey = eosjs_ecc.privateToPublic(privateKey);
+
+    validateKeys('eos', {public: publicKey, private: privateKey});
 
     setResult(`#eospub`, publicKey);
     setResult(`#eospri`, privateKey);
@@ -294,6 +300,54 @@
     nxtPairs.accountID = nxtjs.secretPhraseToAccountId(value);
     nxtPairs.publicKey = nxtjs.secretPhraseToPublicKey(value);
     return nxtPairs;
+  }
+
+  function validateKeys(coin, addresses) { 
+    const coinKeys = getDefinedKeyLength(coin);
+
+    if(Object.prototype.toString.apply(coinKeys) !== "[object Object]") return; 
+
+    for(let i = 0; i < Object.keys(coinKeys).length; i++) {
+      const key = Object.keys(coinKeys)[i];
+      if(coinKeys[key] !== addresses[key].length) {
+        alert(`Please choose another username and password combination. Error: ${coin.toUpperCase()}`);
+        window.location.reload(); 
+        break;
+      }
+    }
+  }
+
+  function getDefinedKeyLength(coin) {
+    const keysObj = {
+      btc: {
+        public: 34,
+        private: 51,
+      },
+      ltc: {
+        public: 34,
+        private: 51,
+      },
+      eth: {
+        public: 42,
+        private: 64,
+      },
+      xmr: {
+        public: 95,
+        private_view: 64,
+        private_spend: 64
+      },
+      loki: {
+        public: 95,
+        private_view: 64,
+        private_spend: 64
+      },
+      eos: {
+        public: 53, 
+        private: 51
+      }
+    };
+
+    return keysObj[coin] || null;
   }
 
   function altCoinCode(altcoin) {
