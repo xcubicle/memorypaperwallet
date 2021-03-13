@@ -14923,12 +14923,15 @@ function keyToLoki(seed) {
   kp._privBytes = Array.from(private_view);
   var public_view = Buffer.from(kp.pubBytes());
 
-
-  var address_buf = Buffer.concat([Buffer.alloc(1, 0x72), public_spend, public_view])
+  var address_buf = Buffer.concat([Buffer.alloc(1, 0x12), public_spend, public_view])
   address_buf = Buffer.concat([address_buf, keccak256(address_buf).slice(0,4)]);
   var address = ''
   for (var i = 0; i < 8; i++) {
-    address += bs58.encode(address_buf.slice(i*8, i*8+8));
+    xx = bs58.encode(address_buf.slice(i*8, i*8+8))
+    for (var y = xx.length; y < 11; y++) {
+      xx = '1' + xx;
+    }
+    address += xx;
   }
   address += bs58.encode(address_buf.slice(64, 69));
   return {
