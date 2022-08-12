@@ -1,6 +1,6 @@
 # Memory Paper Wallet #
 
-## The first user customizable multi-cryptocurrency paper wallet. Supporting: Bitcoin segwit, Litecoin, Ethereum, Monero, Oxen, EOS and Ardor Ignis. ##
+## The first user customizable multi-cryptocurrency paper wallet. Supporting: Bitcoin segwit, Litecoin, Ethereum, Solana, Monero, Oxen, EOS and Ardor. ##
 
 We've all run into the issue of gifting bitcoin to friends or family at one time or another. A lot of the times, newcomers have a hard time grasping the concept of "digital" money. They think if you can't feel it physically, it isn't "real". Paper wallets are the best way for beginners to get their feet wet into cryptocurrency. Since they can hold it and see it, its a much easier segway into this new concept of "digital money".
  
@@ -16,7 +16,7 @@ This app is a single-page application (SPA) that runs completely client-side. It
 - Custom printable artwork.
 - Passphrase recovery
 - Bitcoin segwit paper wallet support.
-- Litecoin, Etherem, Monero, EOS and Ardor/Ignis Support.
+- Various altcoin support.
 - Identicon implementation. Visually identify your address.
 - Ability to split paper wallets into multiple parts using Shamirs Secret Sharing https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing
  
