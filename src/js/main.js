@@ -1,14 +1,15 @@
 (function (global) {
   "use strict";
   let GLOBAL_SHARE_COUNTER = 0;
-  const SUPPORTED_ALT_COINS = ['litecoin', 'ethereum', 'segwit', 'loki', 'monero'];
-  const chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+  const SUPPORTED_ALT_COINS = ['litecoin', 'ethereum', 'segwit', 'loki', 'monero', 'solana'];
+  const chrome = navigator.userAgent.toLowerCase().indexOf('webkit') > -1;
   if (!chrome) {
     $('#login-box input').each(function () {
       $(this).attr('disabled', 'disabled');
     });
     $('#result').remove();
-    alert('This wallet ONLY works on chrome');
+    alert(navigator.userAgent);
+    alert('This wallet ONLY works on WebKit Browsers');
   }
 
   const ELEMENT_VARS = {
@@ -179,7 +180,7 @@
       params.currency = altcoin;
       $('#progress center').text('Generating alt coins...');
       generate(params, result => {
-        validateKeys(alt, result)
+        validateKeys(alt, result) 
 
         drawIdenticon(`.i-${alt}`, result.public);
 
@@ -307,7 +308,7 @@
 
     for(let i = 0; i < Object.keys(coinKeys).length; i++) {
       const key = Object.keys(coinKeys)[i];
-      if(coinKeys[key] !== addresses[key].length) {
+      if((coinKeys[key] !== addresses[key].length) && (coin != 'sol')) {
         alert(`Please choose another username and password combination. Error: ${coin.toUpperCase()}`);
         window.location.reload(); 
         break;
@@ -331,6 +332,10 @@
         private_view: 64,
         private_spend: 64
       },
+      sol: {
+        public: 44,
+        private: 88, //sometimes 87 char
+      },
       eos: {
         public: 53, 
         private: 51
@@ -352,6 +357,8 @@
         return 'xmr';
       case 'loki':
         return 'loki';
+      case 'solana':
+        return 'sol';
     }
     return '';
   }

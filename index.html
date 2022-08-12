@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Memory Paper Wallet</title>
   <meta name="author" content="name">
-  <meta name="description" content="A brain and paper wallet generator using scrypt hardening to create cryptocurrency addresses. Supporting Bitcoin, Ethereum, EOS, Monero, Oxen, Litecoin, and Ardor">
+  <meta name="description" content="A brain and paper wallet generator using scrypt hardening to create cryptocurrency addresses. Supporting Bitcoin, Ethereum, Solana, Monero, Oxen, Litecoin, EOS and Ardor">
   <meta name="keywords" content="keywords,here">
   <!-- <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon"> -->
   <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII="
@@ -67,8 +67,8 @@
   <div class="paper-wallet">
     <div id="login-box">
       <h1>Memory Paper Wallet</h1>
-      <p>A Cryptocurrency Brain + Paper Wallet Generator<br /> Bitcoin, Litecoin, Ethereum, Monero, Oxen, EOS and
-        Ardor/Ignis</p>
+      <p>A Cryptocurrency Brain + Paper Wallet Generator<br /> Bitcoin, Litecoin, Ethereum, Solana, Monero, Oxen, EOS and
+        Ardor</p>
       <form class="x-login">
         <fieldset class="x-email">
           <input id="xprime" class="form-control" placeholder="Email or Username" autocomplete="off" oninput="updateButton()">
@@ -111,7 +111,7 @@
     <div id="result" style="display:none;">
       <div class="currency seg">
         <div class="upload">
-          <label for="upload-img">Upload Background Image<sup>550x300</sup> (SegWit)</label>
+          <label for="upload-img">Upload Background Image<sup>550x300</sup> <a href="https://blockchair.com/bitcoin" target="_blank">Bitcoin SegWit</a></label>
           <input type="file" id="upload-img" name="upload-img" accept=".jpg, .jpeg, .png .webp">
           <button>Remove from Printing</button>
         </div>
@@ -126,6 +126,70 @@
 
         <span id="qr-segpri" class="qr-image qr-pri"></span>
         <span id="segpri" class="altcoins qr-text pri-text"></span>
+
+        <button class="secret-share-btn">Enable Secret Sharing</button>
+        <div class="secret-share-form">
+          <div class="secret-config secret-shares">
+            <label for="shares">Number of shares</label>
+            <input type="number" value="2" min="2" max="9" class="shares">
+          </div>
+          <div class="secret-config secret-threshold">
+            <label for="threshold">Threshold</label>
+            <input type="number" value="2" min="2" max="9" class="threshold">
+          </div>
+          <button class="split">Split</button>
+        </div>
+      </div>
+      <div class="currency eth">
+        <div class="upload">
+          <label for="upload-img">Upload Background Image<sup>550x300</sup> <a href="https://blockchair.com/ethereum" target="_blank">Ethereum</a></label>
+          <input type="file" id="upload-img" name="upload-img" accept=".jpg, .jpeg, .png .webp">
+          <button>Remove from Printing</button>
+        </div>
+
+        <img class="wallet-bg" src="src/img/bgpaper_eth.webp" alt="Ethereum Wallet">
+        <span class="identicon i-eth"></span>
+
+        <span id="qr-ethpub" class="qr-image qr-pub"></span>
+        <span id="ethpub" class="altcoins qr-text pub-text"></span>
+
+        <span class="date"></span>
+
+
+        <span id="qr-ethpri" class="qr-image qr-pri"></span>
+        <span id="ethpri" class="altcoins qr-text pri-text"></span>
+
+        <button class="secret-share-btn">Enable Secret Sharing</button>
+        <div class="secret-share-form">
+          <div class="secret-config secret-shares">
+            <label for="shares">Number of shares</label>
+            <input type="number" value="2" min="2" max="9" class="shares">
+          </div>
+          <div class="secret-config secret-threshold">
+            <label for="threshold">Threshold</label>
+            <input type="number" value="2" min="2" max="9" class="threshold">
+          </div>
+          <button class="split">Split</button>
+        </div>
+      </div>
+      <div class="currency sol">
+        <div class="upload">
+          <label for="upload-img">Upload Background Image<sup>550x300</sup> <a href="https://solscan.io" target="_blank">SOLANA</a></label>
+          <input type="file" id="upload-img" name="upload-img" accept=".jpg, .jpeg, .png .webp">
+          <button>Remove from Printing</button>
+        </div>
+
+        <img class="wallet-bg" src="src/img/bgpaper_sol.webp" alt="Solana Wallet">
+        <span class="identicon i-eth"></span>
+
+        <span id="qr-solpub" class="qr-image qr-pub"></span>
+        <span id="solpub" class="altcoins qr-text pub-text"></span>
+
+        <span class="date"></span>
+
+
+        <span id="qr-solpri" class="qr-image qr-pri"></span>
+        <span id="solpri" class="altcoins qr-text pri-text"></span>
 
         <button class="secret-share-btn">Enable Secret Sharing</button>
         <div class="secret-share-form">
@@ -212,7 +276,7 @@
       </div>
       <div class="currency ltc">
         <div class="upload">
-          <label for="upload-img">Upload Background Image<sup>550x300</sup> (LTC)</label>
+          <label for="upload-img">Upload Background Image<sup>550x300</sup> <a href="https://blockchair.com/litecoin" target="_blank">Litecoin</a></label>
           <input type="file" id="upload-img" name="upload-img" accept=".jpg, .jpeg, .png .webp">
           <button>Remove from Printing</button>
         </div>
@@ -228,38 +292,6 @@
 
         <span id="qr-ltcpri" class="qr-image qr-pri"></span>
         <span id="ltcpri" class="altcoins qr-text pri-text"></span>
-
-        <button class="secret-share-btn">Enable Secret Sharing</button>
-        <div class="secret-share-form">
-          <div class="secret-config secret-shares">
-            <label for="shares">Number of shares</label>
-            <input type="number" value="2" min="2" max="9" class="shares">
-          </div>
-          <div class="secret-config secret-threshold">
-            <label for="threshold">Threshold</label>
-            <input type="number" value="2" min="2" max="9" class="threshold">
-          </div>
-          <button class="split">Split</button>
-        </div>
-      </div>
-      <div class="currency eth">
-        <div class="upload">
-          <label for="upload-img">Upload Background Image<sup>550x300</sup> (ETH)</label>
-          <input type="file" id="upload-img" name="upload-img" accept=".jpg, .jpeg, .png .webp">
-          <button>Remove from Printing</button>
-        </div>
-
-        <img class="wallet-bg" src="src/img/bgpaper_eth.webp" alt="Ethereum Wallet">
-        <span class="identicon i-eth"></span>
-
-        <span id="qr-ethpub" class="qr-image qr-pub"></span>
-        <span id="ethpub" class="altcoins qr-text pub-text"></span>
-
-        <span class="date"></span>
-
-
-        <span id="qr-ethpri" class="qr-image qr-pri"></span>
-        <span id="ethpri" class="altcoins qr-text pri-text"></span>
 
         <button class="secret-share-btn">Enable Secret Sharing</button>
         <div class="secret-share-form">
@@ -308,7 +340,7 @@
       </div>
       <div class="currency btc">
         <div class="upload">
-          <label for="upload-img">Upload Background Image<sup>550x300</sup> (BTC)</label>
+          <label for="upload-img">Upload Background Image<sup>550x300</sup> <a href="https://blockchair.com/bitcoin" target="_blank">Bitcoin</a></label>
           <input type="file" id="upload-img" name="upload-img" accept=".jpg, .jpeg, .png .webp">
           <button>Remove from Printing</button>
         </div>
@@ -340,7 +372,7 @@
       </div>
       <div class="currency eos">
         <div class="upload">
-          <label for="upload-img">Upload Background Image<sup>550x300</sup> (EOS)</label>
+          <label for="upload-img">Upload Background Image<sup>550x300</sup> <a href="https://blockchair.com/eos" target="_blank">EOS</a></label>
           <input type="file" id="upload-img" name="upload-img" accept=".jpg, .jpeg, .png .webp">
           <button>Remove from Printing</button>
         </div>
@@ -390,7 +422,7 @@
     <h4>Main Features</h4>
     <ul>
       <li>Bitcoin segwit paper wallets</li>
-      <li>Monero, Loki, Ethereum, EOS, Litecoin, and Ardor/Ignis paper wallet and graphics</li>
+      <li>Ethereum, Solana, Monero, Oxen, Litecoin, EOS, and Ardor paper wallet graphics</li>
       <li>User changable background for easy customization. (Gifts, Bdays, Weddings, Promotions, etc.)</li>
       <li>Generates multiple crypto currencies with a username passphrase combination</li>
       <li>Identicon integration for visual representation of your address.</li>
@@ -450,6 +482,7 @@
   <script src="src/js/lib/nxtjs.js"></script>
   <script src="src/js/lib/secrets.js"></script>
   <script src="src/js/lib/ecdsa.js"></script>
+  <script src="src/js/lib/solanaweb3.js"></script>
   <script src="src/js/main.js"></script>
 </body>
 
