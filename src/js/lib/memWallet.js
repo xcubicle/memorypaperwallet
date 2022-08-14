@@ -14887,7 +14887,7 @@ function keyToMonero(seed) {
   }
 }
 
-function keyToLoki(seed) {
+function keyToOxen(seed) {
   var private_spend = reduce32(seed);
   var private_view = reduce32(keccak256(private_spend));
 
@@ -14989,8 +14989,8 @@ var currencies = {
     fn: keyToMonero,
     hashSuffix: 3,
   },
-  loki: {
-    fn: keyToLoki,
+  oxen: {
+    fn: keyToOxen,
     hashSuffix: 5,
   },
   solana: {

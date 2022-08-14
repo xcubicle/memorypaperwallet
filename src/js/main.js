@@ -1,7 +1,7 @@
 (function (global) {
   "use strict";
   let GLOBAL_SHARE_COUNTER = 0;
-  const SUPPORTED_ALT_COINS = ['litecoin', 'ethereum', 'segwit', 'loki', 'monero', 'solana'];
+  const SUPPORTED_ALT_COINS = ['litecoin', 'ethereum', 'segwit', 'oxen', 'monero', 'solana'];
   const chrome = navigator.userAgent.toLowerCase().indexOf('webkit') > -1;
   if (!chrome) {
     $('#login-box input').each(function () {
@@ -184,7 +184,7 @@
 
         drawIdenticon(`.i-${alt}`, result.public);
 
-        if (alt == 'loki' || alt == 'xmr') {
+        if (alt == 'oxen' || alt == 'xmr') {
           setResult(`#${alt}pub`, result.public);
           // setResult(`#xmrpub-spend`, result.public_spend);
           setResult(`#${alt}pri-spend`, result.private_spend);
@@ -327,7 +327,7 @@
         private_view: 64,
         private_spend: 64
       },
-      loki: {
+      oxen: {
         public: 95,
         private_view: 64,
         private_spend: 64
@@ -355,8 +355,8 @@
         return 'seg';
       case 'monero':
         return 'xmr';
-      case 'loki':
-        return 'loki';
+      case 'oxen':
+        return 'oxen';
       case 'solana':
         return 'sol';
     }

@@ -176,7 +176,7 @@ a { color: yellow }
 
 .pri-text { left: 5px; font-size: 9px; width: 230px; top: 225px; text-align: center; }
   .xmr.cloned .pri-text,
-  .loki.cloned .pri-text,
+  .oxen.cloned .pri-text,
   .nxt.cloned .pri-text { width: 463px; text-align: left }
 
 .date {
@@ -211,21 +211,21 @@ a { color: yellow }
 
 
 
-/*LOKI qr codes*/
-.loki .qr-pub { top: 45px; left: 470px }
-  .loki .qr-pub img { width: 99px }
-#lokipub { font-size: 11px; width: 113px; left: 583px; top: 53px; }
-#lokipri-view  { left: 478px; width: 128px; top: 197px; font-size: 11px; }
+/*oxen qr codes*/
+.oxen .qr-pub { top: 45px; left: 470px }
+  .oxen .qr-pub img { width: 99px }
+#oxenpub { font-size: 11px; width: 113px; left: 583px; top: 53px; }
+#oxenpri-view  { left: 478px; width: 128px; top: 197px; font-size: 11px; }
 
 
-#qr-lokipri-view { position: absolute; right: 0; top: 190px; }
-  #qr-lokipri-view img { width: 88px }
+#qr-oxenpri-view { position: absolute; right: 0; top: 190px; }
+  #qr-oxenpri-view img { width: 88px }
 
 
 
 /* Cloned Wallet */
 .currency.xmr.cloned
-.currency.loki.cloned
+.currency.oxen.cloned
 .cloned .pri-text { font-size: 7px; }
 .secret-share-btn { border: none; padding: 5px 10px; background: #ed0e31; color: #fff; font-weight: bold; outline: none; cursor: pointer; }
 .secret-share-form { display: none; color: #fff; text-align: center; }
